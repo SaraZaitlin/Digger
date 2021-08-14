@@ -1,0 +1,1 @@
+target_include_directories(Project_Shira_Alfassi_Sara_Zaitlin PRIVATE ${CMAKE_CURRENT_LIST_DIR})

@@ -1,109 +1,101 @@
-﻿פורייקט דיגר 2020 
-מגישות :
-שירה אלפסי: 208175737
-שרה צייטלין:209181874
+Digger 2020 project
+Serves:
+Shira Alfasi: 208175737
+Sarah Zeitlin: 209181874
 
-על הפרוייקט בכלליות:
-בתרגיל זה נממש שוב את המשחק Digger שמימשנו בתרגיל 2 .ההבדלים המרכזיים הם שהפעם
-השתמשנו בירושה ופולימורפיזם וכן השתמשנו בספרייה הגרפית SFML.
-המשחק כעת יהיה "בזמן אמת", מונחה שעון, ולא מונחה תורים כפי שהיה בתרגיל2.
-התנגשות בקירות או בין דמויות:
-הגדרת התנגשות היא כאשר יש נקודה חופפת בין המלבנים החוסמים הרלוונטיים, כלומר המלבן
-החוסם את המכשול והמלבן החוסם את הדמות או המלבנים החוסמים של שתי הדמויות המתנגשות
-(Digger ומפלצת).
-מימשנו את ההנגשויות עי מלבן חוסם כפי שבוקש.
-הגבלות ו"בונוסים" לשחקן:
-בכל שלב מוגדרת הגבלת זמן (בנוסף להגבלת מספר האבנים שמותר "לאכול", שאנחנו
-קוראים מהקובץ).  
-אם עבר הזמן המוגדר, זה נחשב לפסילה של השחקן (יורדים "חיים") והשלב מתחיל מחדש (באופן
-דומה למה שעשינו כבר בתרגיל 2 לגבי הגבלת מספר האבנים, כלומר השלב כולו מתחיל מחדש, כולל האבנים ש"נאכלו").
+About the project in general:
+ A desktop app of the Digger game,  developed in C++ by using the principles of OOP. GUI development using the SFML library. The game has several levels with difficulties that increased.
+The game will be "real-time", clock-driven, non-turn-based.
+Collision in walls or between figures:
+A definition of a collision is when there is an overlapping point between the relevant blocking rectangles, i.e. the rectangle
+The blocking block and the rectangle blocking the blocking block or rectangles of the two colliding figures
+(Digger and Monster).
+We implemented the accessibility by a blocking rectangle as requested.
+Restrictions and "bonuses" per player:
+At each stage a time limit is set (in addition to the limit on the number of stones that are allowed to be "eaten", that is
+Read from the file).
+If the set time has elapsed, it is considered the disqualification of the player (descending "alive") and the stage begins anew (i.e. the whole stage begins anew, including the stones "eaten").
 
-עוד תוספת היא "מתנות" המפוזרות בשלב. השחקן אוסף את המתנה על ידי "דריכה" עליה. סוגי
-המתנות שמימשנו הם:
-1 .תוספת למספר האבנים שמותר "לאכול".
-2 .הגדלת הזמן המוקצב (בהנחה שיש בשלב הזה מגבלה על הזמן).
-3 .הוספת ניקוד.
+Another addition is the “gifts” scattered throughout the stage. The player collects the gift by "stepping" on it. Types
+The gifts we have realized are:
+1. Addition to the number of stones that are allowed to be "eaten".
+2. Increasing the allotted time (assuming there is a time limit at this point).
+3. Add a score.
 
-שלבי המשחק:
-סיפקנו ארבעה שלבים
-פורמט הקובץ:
-בשורה הראשונה מופיעים ארבעה מספרים: מספר השורות בשלב, מספר העמודות ומספר האבנים
-המותרות באכילה, וגם הגבלת הזמן לשלב (בשניות)
-אחריה מופיעות שורות כמספר השורות שהוגדר עם הסימונים # (קיר), @ (אבן), / (Digger) ,!(מפלצת), (D יהלום) ורווח למשבצות הריקות. בנוסף, יכול להופיע הסימון + ("מתנה").
-כל השלבים יופיעו בקובץ אחד, ניתן להוסיף שלבים בקובץ הBOARD אשר יכלול בשורה הראשונה את מספר השורות מספר העמודות.
-אנו מניחות שהקובץ תקין.
+Stages of the game:
+We provided four steps
+File format:
+The first row contains four numbers: the number of rows in the stage, the number of columns and the number of stones
+The luxury of eating, and also the time limit to combine (in seconds)
+It is followed by rows as the number of rows defined with the notations # (wall), @ (stone), / (Digger),! (Monster), (D diamond) and a space for the empty squares. In addition, the + ("Gift") checkmark may appear.
+All the steps will appear in one file, you can add steps in the BOARD file which will include in the first row the number of rows and the number of columns.
+We assume the file is OK.
 
-ניקוד:
- על כל יהלום – 15 נקודות, על סיום שלב – 20 נקודות.
+Score:
+ For each diamond - 15 points, for the end of a stage - 20 points.
 
 
-מפלצות "מיוחדות":
-בנוסף לסוג המפלצות הרגיל שהגדרנו עד כה, נוסיף סוג חדש של מפלצות.
-הבחירה אם מפלצת היא מפלצת רגילה או "מיוחדת" נעשית בצורה אקראית ביצירת המפלצת בתחילת השלב
-מפלצות גם החכמות וגם הרנדומליות יכולות לעבור במקום שיש בו מתנה, אבל הן כמובן לא יכולות לקחת אותה.
-המפלצות החכמות יכולות לעלות על סלעים, בנוסף הם רודפות מהר יותר אחרי השחקן עי חישוב מנהטן.
-(כזכור, את המידע על מיקום המפלצות ומספרן אנחנו מקבלים בקריאה מהקובץ).
+"Special" monsters:
+In addition to the regular type of monsters we have defined so far, we will add a new type of monsters.
+The choice of whether a monster is a normal or "special" monster is made randomly in the creation of the monster at the beginning of the stage
+Both smart and random monsters can pass where there is a gift, but they obviously cannot take it.
+The smart monsters can climb rocks, in addition they chase the player faster by calculating Manhattan.
+(Remember, the information about the location of the monsters and their number we get by reading from the file).
 
-תצוגת מידע:
-אנו מציגים עבור השחקן את מספר הנקודות שצבר, את מספר הפסילות שנשארו לו, את מספר האבנים שמותר לו לאכול ואת הזמן שנותר לו, וכן את מספר השלב הנוכחי.
+Information display:
+We show the player the number of points he has accumulated, the number of disqualifications he has left, the number of stones he is allowed to eat and the time he has left, as well as the number of the current stage.
 
-תזוזה:
-למרות שבשימוש במסך גרפי אנחנו יכולים להזיז את הדמויות גם באלכסון, לכאורה, בכל זאת נשאיר
-את התזוזות רק בקווים ישרים לאורך הצירים(כדי שלא יהיה לנו בעיה עם ההנגשויות), ולכן גם המקשים של השחקן נשארים כפי שהם חיצים לתזוזה לאחד מארבעת הצדדים בהתאמה;הלחיצה על המקשים נשארת כשהייתה 
-רק שהפעם מזהים זאת בעזרת אירועים של SFML במקוםבעזרת getch .
-ההבדל הוא שעכשיו אנחנו לא מתנהלים לפי תור אלא לפי השעון. ממילא, קצב התזוזה לא יסתמך על קצב קבלת האירועים של pressed key ,שאיננו אחיד, אלא על משך הלחיצה ועל השעון
-הלחיצה רק קובעת האם השחקן יזוז ולאיזה כיוון הוא יזוז, כאשר נרצה להזיז אותו. התזוזה
-בפועל מתבצעת לפי הזמן שחולף. מתי השחקן נעצר (גם בלי להיתקע במכשול):
-השחקן ימשיך לנוע גם אם עזב את המקש, ולחיצה על מקש הרווח תשמש כעת לצורך עצירה במקום.
+move:
+Although using a graphic screen we can also move the characters diagonally, seemingly, we will still leave
+The shifts only in straight lines along the axes (so that we do not have a problem with the accessibility), so also the player's keys remain as they are arrows to move to one of the four sides respectively; Pressing the keys remains as it was
+Only this time it is recognized with SFML events instead of getch.
+The difference is that now we are not running in turn but by the clock. In any case, the rate of movement will not be based on the rate of receipt of the pressed key events, which is not uniform, but on the duration of the click and the clock.
+The click only determines whether the player will move and in which direction he will move, when we want to move it. The displacement
+The practice is carried out according to the elapsed time. When the player is stopped (even without getting stuck in an obstacle):
+The player will continue to move even if he has left the key, and pressing the space bar will now be used to stop instead.
 
-מהירויות תזוזה:
-מהירות השחקן היא:150
-מהירות המפלצת היא:130
-השחקן יותר מהיר מהמפלצת כדי שהוא יוכל לברוח ממנה ושהיא לא תאכל אותו תוך שנייה...
-חלוקת העבודה בנינו:
-שירה אלפסי: עשיתי את התזוזה של הפלייר שהוא ילך על הצירים, את הצוגת מידע ואת המעבר שלב, הוספתי מוזיקה לתוכנית.
-שרה צייטלין: עשיתי את ההתנגשויות, תזוזת מפלצות וחזרה לתחילת השלב במקרה שנגמר הזמן.
-תנאי הכרחי לתוכנית: קירות חוסמים בכל הכיונים.
+Displacement speeds:
+The player's speed is: 150
+The speed of the monster is: 130
+The player is faster than the monster so that he can escape from it and that she will not eat it in a second ...
 
-מחלקות:
-GAME OBJECT 
-היא מחלקה שממנה כולם יורשים -ובעצם ממנה כולם מממשים פונקציית ציור.
+Necessary conditions for the plan: walls blocking in all directions.
+
+Departments:
+GAME OBJECT
+It is a class from which everyone inherits - and in fact from it everyone realizes a painting function.
 
 DYNAMIC:
-היא מחלקה שממנה יורשים כל המחלקות של האובייקטים הסטטיים כלומר-PLAYER ו MONSTER.
+Is a class from which all classes of static objects are inherited, ie PLAYER and MONSTER.
 
 STATIC:
-היא מחלקה שממנה יורשים כל מחלקות האובייקטים הסטטים, כלומר קיר, אבן, יהלום...
+It is a class from which all classes of static objects are inherited, ie wall, stone, diamond ...
 
 SMARTMONSTER:
-מחלקה שאחראית על כל הטיפול במפלצות החכמות היא יורשת מMONSTER
+A department that is responsible for all the care of the smart monsters is an heiress from MONSTER
 
-ORGINALMONSTER:
-מחלקה שאחראית על כל הטיפול במפלצות הרגילות  היא יורשת מMONSTER.
+ORIGINAL SAMPLES:
+A department responsible for all care of ordinary monsters is a successor to MONSTER.
 
 LEVEL:
-מחלקה שאחראית על כל קריאת השלבים כל שלב ושלב...
-מעברי שלבים וכו..
+Department responsible for all stages reading Each stage and stage ...
+Stage transitions etc ..
 
-INFORMATIONDISPLAY:
-מחלקה שאחראית על תצוגת המידע.
+INFORMATION DISPLAY:
+Department responsible for displaying information.
 
 CONST:
-מחלקה שמחזיקה לנו את כל הקבועים של המשחק.
+A class that holds all the constants of the game for us.
 
 BOARD:
-מחלקה זו אחראית על כל קריאת הקובץ.
+This department is responsible for all readings of the file.
 
 BUTTON:
-היא מחלקה שאחראית על הכפתורים של הכניסה והיציאה מהמשחק.
-המחלקות BUTTONSTART ו BUTTONSTOP יורשות ממחלקת BUTTON 
+It is a department that is responsible for the buttons for entering and exiting the game.
+The BUTTONSTART and BUTTONSTOP classes inherit from the BUTTON class
 
- RESURSE:
-היא מחלקה שממנה אנו טוענים את כל התמונות.
+ RESOURCE:
+Is a class from which we load all the images.
 
 MNUE:
-היא מחלקה שבעצם אחראית על הכפתורים של הכניסה והיציאה.
-
-
-
-
+It is a department that is actually responsible for the entry and exit buttons.

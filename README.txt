@@ -1,7 +1,7 @@
 Digger 2020 project
 Serves:
 Shira Alfasi: 208175737
-Sarah Zeitlin: 209181874
+Sara Zeitlin: 209181874
 
 About the project in general:
  A desktop app of the Digger game,  developed in C++ by using the principles of OOP. GUI development using the SFML library. The game has several levels with difficulties that increased.
